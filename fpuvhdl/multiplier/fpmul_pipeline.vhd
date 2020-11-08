@@ -45,6 +45,8 @@ ARCHITECTURE pipeline OF FPmul IS
    -- Architecture declarations
 
    -- Internal signal declarations
+   SIGNAL FPreg_A	    : std_logic_vector(31 downto 0);
+   SIGNAL FPreg_B         : std_logic_vector(31 downto 0);
    SIGNAL A_EXP           : std_logic_vector(7 DOWNTO 0);
    SIGNAL A_SIG           : std_logic_vector(31 DOWNTO 0);
    SIGNAL B_EXP           : std_logic_vector(7 DOWNTO 0);
@@ -72,6 +74,17 @@ ARCHITECTURE pipeline OF FPmul IS
 
 
    -- Component Declarations
+   COMPONENT reg
+     generic(
+	    Nbit : integer := 32);	-- # of bits
+
+     port (
+	  CLK : IN std_logic;			-- clock
+	  S_in : IN signed (Nbit-1 downto 0);	-- input sample
+	  S_out : OUT signed(Nbit-1 downto 0)	-- output sample
+	);
+   END COMPONENT;	
+
    COMPONENT FPmul_stage1
    PORT (
       FP_A            : IN     std_logic_vector (31 DOWNTO 0);
@@ -156,10 +169,23 @@ ARCHITECTURE pipeline OF FPmul IS
 BEGIN
 
    -- Instance port mappings.
+   Input_regA : reg 
+	 PORT MAP (
+		CLK 			=> clk,
+	     S_in 			=> FP_A,
+	     S_out 		=> FPreg_A
+	);
+   Input_regB : reg 
+	 PORT MAP (
+		CLK 			=> clk,
+	     S_in 			=> FP_B,
+	     S_out 		=> FPreg_B
+	);
+
    I1 : FPmul_stage1
       PORT MAP (
-         FP_A            => FP_A,
-         FP_B            => FP_B,
+         FP_A            => FPreg_A,
+         FP_B            => FPreg_B,
          clk             => clk,
          A_EXP           => A_EXP,
          A_SIG           => A_SIG,
