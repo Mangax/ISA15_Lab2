@@ -45,7 +45,7 @@ ARCHITECTURE pipeline OF FPmul IS
    -- Architecture declarations
 
    -- Internal signal declarations
-   SIGNAL FPreg_A	    : std_logic_vector(31 downto 0);
+   SIGNAL FPreg_A	      : std_logic_vector(31 downto 0);
    SIGNAL FPreg_B         : std_logic_vector(31 downto 0);
    SIGNAL A_EXP           : std_logic_vector(7 DOWNTO 0);
    SIGNAL A_SIG           : std_logic_vector(31 DOWNTO 0);
@@ -71,19 +71,34 @@ ARCHITECTURE pipeline OF FPmul IS
    SIGNAL isZ_tab         : std_logic;
    SIGNAL isZ_tab_stage1  : std_logic;
    SIGNAL isZ_tab_stage2  : std_logic;
+   -- Pipeline registers
+   SIGNAL EXP_in_pipe          : std_logic_vector (7 DOWNTO 0);
+   SIGNAL EXP_neg_stage2_pipe  : std_logic ;
+   SIGNAL EXP_pos_stage2_pipe  : std_logic ;
+   SIGNAL SIGN_out_stage2_pipe : std_logic ;
+   SIGNAL SIG_in_pipe          : std_logic_vector (27 DOWNTO 0);
+   SIGNAL isINF_stage2_pipe    : std_logic ;
+   SIGNAL isNaN_stage2_pipe    : std_logic ;
+   SIGNAL isZ_tab_stage2_pipe  : std_logic;
 
 
    -- Component Declarations
    COMPONENT reg
-     generic(
-	    Nbit : integer := 32);	-- # of bits
-
-     port (
+   generic(Nbit : integer := 32);
+	port (
 	  CLK : IN std_logic;			-- clock
-	  S_in : IN signed (Nbit-1 downto 0);	-- input sample
-	  S_out : OUT signed(Nbit-1 downto 0)	-- output sample
+	  S_in : IN std_logic_vector (Nbit - 1 downto 0);	-- input sample
+	  S_out : OUT std_logic_vector (Nbit - 1 downto 0)	-- output sample
 	);
    END COMPONENT;	
+
+   COMPONENT reg_std_logic
+   port (
+	CLK : IN std_logic;			-- clock
+	S_in : IN std_logic;	-- input sample
+	S_out : OUT std_logic	-- output sample
+	);
+   end component;
 
    COMPONENT FPmul_stage1
    PORT (
@@ -169,18 +184,8 @@ ARCHITECTURE pipeline OF FPmul IS
 BEGIN
 
    -- Instance port mappings.
-   Input_regA : reg 
-	 PORT MAP (
-		CLK 			=> clk,
-	     S_in 			=> FP_A,
-	     S_out 		=> FPreg_A
-	);
-   Input_regB : reg 
-	 PORT MAP (
-		CLK 			=> clk,
-	     S_in 			=> FP_B,
-	     S_out 		=> FPreg_B
-	);
+   Input_regA :	reg GENERIC MAP (Nbit => 32) PORT MAP (clk, FP_A, FPreg_A);
+   Input_regB : reg GENERIC MAP (Nbit => 32) PORT MAP(clk, FP_B, FPreg_B);
 
    I1 : FPmul_stage1
       PORT MAP (
@@ -216,17 +221,27 @@ BEGIN
          isNaN_stage2    => isNaN_stage2,
          isZ_tab_stage2  => isZ_tab_stage2
       );
+
+   exp_pipe: reg GENERIC MAP (Nbit => 8) PORT MAP(clk, EXP_in, EXP_in_pipe);
+   exp_neg_pipe: reg_std_logic PORT MAP(clk, EXP_neg_stage2, EXP_neg_stage2_pipe);
+   exp_pos_pipe: reg_std_logic PORT MAP(clk, EXP_pos_stage2, EXP_pos_stage2_pipe);
+   sign_out_pipe: reg_std_logic PORT MAP(clk, SIGN_out_stage2, SIGN_out_stage2_pipe);
+   sig_pipe: reg GENERIC MAP (Nbit => 28) PORT MAP (clk, SIG_in, SIG_in_pipe);
+   isINF_pipe: reg_std_logic PORT MAP(clk, isINF_stage2, isINF_stage2_pipe);
+   isNaN_pipe: reg_std_logic PORT MAP(clk, isNaN_stage2, isNaN_stage2_pipe);
+   isZ_pipe: reg_std_logic PORT MAP(clk, isZ_tab_stage2, isZ_tab_stage2_pipe);
+
    I3 : FPmul_stage3
       PORT MAP (
-         EXP_in          => EXP_in,
-         EXP_neg_stage2  => EXP_neg_stage2,
-         EXP_pos_stage2  => EXP_pos_stage2,
-         SIGN_out_stage2 => SIGN_out_stage2,
-         SIG_in          => SIG_in,
+         EXP_in          => EXP_in_pipe,
+         EXP_neg_stage2  => EXP_neg_stage2_pipe,
+         EXP_pos_stage2  => EXP_pos_stage2_pipe,
+         SIGN_out_stage2 => SIGN_out_stage2_pipe,
+         SIG_in          => SIG_in_pipe,
          clk             => clk,
-         isINF_stage2    => isINF_stage2,
-         isNaN_stage2    => isNaN_stage2,
-         isZ_tab_stage2  => isZ_tab_stage2,
+         isINF_stage2    => isINF_stage2_pipe,
+         isNaN_stage2    => isNaN_stage2_pipe,
+         isZ_tab_stage2  => isZ_tab_stage2_pipe,
          EXP_neg         => EXP_neg,
          EXP_out_round   => EXP_out_round,
          EXP_pos         => EXP_pos,

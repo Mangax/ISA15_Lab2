@@ -3,14 +3,14 @@
 import os
 import subprocess
 
-os.system("rm -f ../data/tb_results.hex")
+os.system("rm -f ../data/tb_results_pipeline.hex")
 
 # We save the strings corresponding to the correct results
 correct_values = []
 try:
 	prod_file = open('../data/fp_prod.hex', 'r')
 	for value in prod_file:
-		correct_values.append(value.rstrip());
+		correct_values.append(value.rstrip())
 finally:
 	prod_file.close()
 
@@ -29,7 +29,7 @@ print ("Simulation completed")
 # We check the results
 obtained_results = []
 try:
-	results = open("../data/tb_results.hex", 'r')
+	results = open("../data/tb_results_pipeline.hex", 'r')
 	for res in results:
 		obtained_results.append(res.lower().rstrip())
 finally:

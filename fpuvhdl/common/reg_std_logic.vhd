@@ -4,33 +4,23 @@
 
 library ieee;
 use ieee.std_logic_1164.all;
-use ieee.numeric_std.all;
+USE ieee.std_logic_arith.all;
 
-entity reg is 
-generic(
-	Nbit : integer := 32);	-- # of bits
-
+entity reg_std_logic is
 port (
 	CLK : IN std_logic;			-- clock
-	S_in : IN signed (Nbit-1 downto 0);	-- input sample
-	S_out : OUT signed(Nbit-1 downto 0)	-- output sample
+	S_in : IN std_logic;	-- input sample
+	S_out : OUT std_logic	-- output sample
 	);
-end reg;
+end reg_std_logic;
 
-architecture bhe of reg is 
-
+architecture bhe of reg_std_logic is 
 begin
-
 -- process for synchronous operation
 process(CLK)
-
-begin 
-	
-	
+begin 	
 	if (rising_edge(CLK)) then	-- normal operation synchronous with clock
-		 
 			S_out <= S_in; 
-		
 	end if; 
 end process;
 

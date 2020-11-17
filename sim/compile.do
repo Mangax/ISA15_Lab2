@@ -13,7 +13,7 @@ vsim work.tb_mul
 
 #add list -decimal clk -notrigger a b c cout sum
 
-run 160ns
+run 180ns
 
 #write list counter.lst
 quit -f
