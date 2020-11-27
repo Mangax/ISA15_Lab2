@@ -1,26 +1,32 @@
-H 2141964 11 3 0 13 9 0 0 0 0
+H 2141964 11 3 0 15 13 0 0 0 0
 L 4 ieee 19 $MODEL_TECH/../ieee
 L 3 std 18 $MODEL_TECH/../std
 L 4 work 6 ./work
-D 19 ./work.clk_gen(beh) [ZzB<S`fa_3de^feZoiiO2 9 1
-D 22 ./work.data_maker(beh) ca7oW]SJCMBgUTA8N]a;B1 10 1
-D 21 ./work.data_sink(beh) >_Yfj13lPkSB;WMGClglg2 12 1
-D 22 ./work.fpmul(pipeline) i]l[EoVL^Ql<>G8d=l@X10 11 1
-D 27 ./work.fpmul_stage1(struct) X4C:zJ@ciddRk08ZM8@5W3 1 1
-D 27 ./work.fpmul_stage2(struct) nER_Q>NeJ9I1=42C7YbjO3 2 1
-D 27 ./work.fpmul_stage3(struct) I27kNMf@^_dDF?mX[?UmU0 5 1
-D 27 ./work.fpmul_stage4(struct) zWU>=bEMieo>ZNkD=C?=R2 7 1
-D 31 ./work.fpnormalize(fpnormalize) >ICK?B]ciEBfk9nDK573=3 3 1
-D 23 ./work.fpround(fpround) ;Zlz?mFR7bL6<Si4iO^>;3 4 1
-D 21 ./work.packfp(packfp) ::WW?]=P6L:iPE`3NNO[O0 6 1
-D 13 ./work.tb_mul m;_?ZY_Bj5?:4UiPgEQJU1 8 0
-D 25 ./work.unpackfp(unpackfp) 5kT:h0NeIW3J8Udf_5WZN2 0 1
-2 0  1 h@mA7?[Khh0V26?k5UWE<1 5 5 1
-2 0  0 i^`^O1TNNJA4n2VI_`0RO0 6 6 1
-2 0  0 3:AGIjCAMnlMC=zoF>^4o0 7 7 1
-2 4 fast 0 E3H9B=_hN9D^`Eg2aY=o_3 8 8 1
-2 0  1 IOFoJfLVD]A9O=>jU2V<R2 4 4 1
-2 0  0 L]noReBZMWhRPfVkY=2IM3 0 0 1
-2 0  0 LdQajE]g^OSlidTCeS87J2 1 1 1
-2 0  0 hZB[]C?:GU4=?ORP0hZgT0 2 2 1
-2 0  1 HEB3mYJfnDXSBB@l65A5F3 3 3 1
+D 19 ./work.clk_gen(beh) [ZzB<S`fa_3de^feZoiiO2 11 1
+D 22 ./work.data_maker(beh) ca7oW]SJCMBgUTA8N]a;B1 12 1
+D 21 ./work.data_sink(beh) ]H<lQKcP5VmlHG=L7cFfX1 14 1
+D 22 ./work.fpmul(pipeline) VQ:VdC>mN=RBl?c81fR]U3 13 1
+D 27 ./work.fpmul_stage1(struct) X4C:zJ@ciddRk08ZM8@5W3 2 1
+D 27 ./work.fpmul_stage2(struct) nER_Q>NeJ9I1=42C7YbjO3 3 1
+D 27 ./work.fpmul_stage3(struct) I27kNMf@^_dDF?mX[?UmU0 7 1
+D 27 ./work.fpmul_stage4(struct) zWU>=bEMieo>ZNkD=C?=R2 9 1
+D 31 ./work.fpnormalize(fpnormalize) >ICK?B]ciEBfk9nDK573=3 5 1
+D 23 ./work.fpround(fpround) ;Zlz?mFR7bL6<Si4iO^>;3 6 1
+D 21 ./work.packfp(packfp) ::WW?]=P6L:iPE`3NNO[O0 8 1
+D 15 ./work.reg(bhe) <@Z4_eRdSNh5ea1_Yl><90 0 1
+D 25 ./work.reg_std_logic(bhe) 9amLO@gX5J:;mNYMNNHHa0 4 1
+D 13 ./work.tb_mul m;_?ZY_Bj5?:4UiPgEQJU1 10 0
+D 25 ./work.unpackfp(unpackfp) 5kT:h0NeIW3J8Udf_5WZN2 1 1
+2 0  1 HEB3mYJfnDXSBB@l65A5F3 6 5 1
+2 0  1 IOFoJfLVD]A9O=>jU2V<R2 7 6 1
+2 0  1 h@mA7?[Khh0V26?k5UWE<1 8 7 1
+2 0  0 i^`^O1TNNJA4n2VI_`0RO0 9 8 1
+2 0  0 3:AGIjCAMnlMC=zoF>^4o0 10 9 1
+2 4 fast 0 E2fP6MaR19ID;8`?ACCi72 11 10 1
+2 0  0 LdQajE]g^OSlidTCeS87J2 2 2 1
+2 0  0 hZB[]C?:GU4=?ORP0hZgT0 3 3 1
+2 0  0 f7gVLfh6M6h3^Uf^YA;b11 4 4 1
+2 0  0 L]noReBZMWhRPfVkY=2IM3 1 1 1
+2 0  1 >7MmGc?Nl4Adm@c;^UbI13 0 0 1
+2 0  2 bk7N3zlkS=>:md^hXM_X^1 12 0 1
+2 0  3 b3CaA<>E@KZGS1W34G1nR0 5 0 1

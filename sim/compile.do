@@ -1,6 +1,7 @@
 vlib work
 
-vcom -93 -work ./work ../fpuvhdl/common/*
+vcom -93 -work ./work ../fpuvhdl/common/*.vhd
+vcom -93 -work ./work ../fpuvhdl/mbe/*.vhd
 vcom -93 -work ./work ../fpuvhdl/multiplier/fpmul_stage1_struct.vhd
 vcom -93 -work ./work ../fpuvhdl/multiplier/fpmul_stage2_struct.vhd
 vcom -93 -work ./work ../fpuvhdl/multiplier/fpmul_stage3_struct.vhd

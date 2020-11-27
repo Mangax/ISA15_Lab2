@@ -69,7 +69,12 @@ ARCHITECTURE struct OF FPmul_stage2 IS
    SIGNAL dout1       : std_logic_vector(7 DOWNTO 0);
    SIGNAL prod        : std_logic_vector(63 DOWNTO 0);
 
-
+	-- MBE multiplier with DADDA TREE
+	COMPONENT MBE_multiplier
+	PORT(	A : IN std_logic_vector(31 downto 0);
+			B : IN std_logic_vector(31 downto 0);
+			PROD : OUT std_logic_vector(63 downto 0));
+	END COMPONENT;
 
 BEGIN
    -- Architecture concurrent statements
@@ -127,13 +132,16 @@ BEGIN
       dout1 <= conv_std_logic_vector(mw_I4sum(7 DOWNTO 0),8);
    END PROCESS I4combo;
 
+   -- Our component port map
+   our_component : MBE_multiplier PORT MAP(A_SIG, B_SIG, prod);
+
    -- ModuleWare code(v1.1) for instance 'I2' of 'mult'
-   I2combo : PROCESS (A_SIG, B_SIG)
-   VARIABLE dtemp : unsigned(63 DOWNTO 0);
-   BEGIN
-      dtemp := (unsigned(A_SIG) * unsigned(B_SIG));
-      prod <= std_logic_vector(dtemp);
-   END PROCESS I2combo;
+   --I2combo : PROCESS (A_SIG, B_SIG)
+   --VARIABLE dtemp : unsigned(63 DOWNTO 0);
+   --BEGIN  
+	  --dtemp := (unsigned(A_SIG) * unsigned(B_SIG));
+      --prod <= std_logic_vector(dtemp);
+   --END PROCESS I2combo;
 
    -- ModuleWare code(v1.1) for instance 'I6' of 'vdd'
    dout <= '1';
