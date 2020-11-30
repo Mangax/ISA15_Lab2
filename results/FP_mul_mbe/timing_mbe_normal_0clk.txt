@@ -1,0 +1,120 @@
+Warning: There are infeasible paths detected in your design that were ignored during optimization. Please run 'report_timing -attributes' and/or 'create_qor_snapshot/query_qor_snapshot -infeasible_paths' to identify these paths.  (OPT-1721)
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : FPmul
+Version: O-2018.06-SP4
+Date   : Sun Nov 29 17:40:07 2020
+****************************************
+
+Operating Conditions: typical   Library: NangateOpenCellLibrary
+Wire Load Model Mode: top
+
+  Startpoint: I1/A_SIG_reg[17]
+              (rising edge-triggered flip-flop clocked by MY_CLK)
+  Endpoint: I2/SIG_in_reg[27]
+            (rising edge-triggered flip-flop clocked by MY_CLK)
+  Path Group: MY_CLK
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  FPmul              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock MY_CLK (rise edge)                                0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  I1/A_SIG_reg[17]/CK (DFF_X1)                            0.00       0.00 r
+  I1/A_SIG_reg[17]/Q (DFF_X1)                             0.09       0.09 r
+  I1/A_SIG[17] (FPmul_stage1)                             0.00       0.09 r
+  I2/A_SIG[17] (FPmul_stage2)                             0.00       0.09 r
+  I2/our_component/A[17] (MBE_multiplier)                 0.00       0.09 r
+  I2/our_component/U40/Z (BUF_X1)                         0.17       0.26 r
+  I2/our_component/pp_7/Multiplicand[17] (PPgenerator_N32_10)
+                                                          0.00       0.26 r
+  I2/our_component/pp_7/U79/Z (MUX2_X1)                   0.10       0.36 f
+  I2/our_component/pp_7/U78/ZN (NAND2_X1)                 0.04       0.40 r
+  I2/our_component/pp_7/PP[18] (PPgenerator_N32_10)       0.00       0.40 r
+  I2/our_component/dadda/pp7[32] (DADDA_TREE)             0.00       0.40 r
+  I2/our_component/dadda/l6_fa_third_row_32/B (FA_450)
+                                                          0.00       0.40 r
+  I2/our_component/dadda/l6_fa_third_row_32/U4/ZN (XNOR2_X1)
+                                                          0.06       0.46 r
+  I2/our_component/dadda/l6_fa_third_row_32/U3/ZN (XNOR2_X1)
+                                                          0.06       0.52 r
+  I2/our_component/dadda/l6_fa_third_row_32/S (FA_450)
+                                                          0.00       0.52 r
+  I2/our_component/dadda/l5_fa_second_row_32/B (FA_396)
+                                                          0.00       0.52 r
+  I2/our_component/dadda/l5_fa_second_row_32/U4/ZN (XNOR2_X1)
+                                                          0.06       0.59 r
+  I2/our_component/dadda/l5_fa_second_row_32/U3/ZN (XNOR2_X1)
+                                                          0.06       0.65 r
+  I2/our_component/dadda/l5_fa_second_row_32/S (FA_396)
+                                                          0.00       0.65 r
+  I2/our_component/dadda/l4_fa_first_row_32/Ci (FA_316)
+                                                          0.00       0.65 r
+  I2/our_component/dadda/l4_fa_first_row_32/U4/ZN (XNOR2_X1)
+                                                          0.06       0.72 r
+  I2/our_component/dadda/l4_fa_first_row_32/U5/ZN (XNOR2_X1)
+                                                          0.06       0.78 r
+  I2/our_component/dadda/l4_fa_first_row_32/S (FA_316)
+                                                          0.00       0.78 r
+  I2/our_component/dadda/l3_fa_first_row_32/A (FA_192)
+                                                          0.00       0.78 r
+  I2/our_component/dadda/l3_fa_first_row_32/U3/Z (BUF_X1)
+                                                          0.04       0.82 r
+  I2/our_component/dadda/l3_fa_first_row_32/U8/ZN (INV_X1)
+                                                          0.03       0.85 f
+  I2/our_component/dadda/l3_fa_first_row_32/U2/ZN (AOI22_X2)
+                                                          0.07       0.92 r
+  I2/our_component/dadda/l3_fa_first_row_32/Co (FA_192)
+                                                          0.00       0.92 r
+  I2/our_component/dadda/l2_fa_row_33/B (FA_89)           0.00       0.92 r
+  I2/our_component/dadda/l2_fa_row_33/U3/ZN (XNOR2_X1)
+                                                          0.07       0.99 r
+  I2/our_component/dadda/l2_fa_row_33/U2/ZN (XNOR2_X1)
+                                                          0.07       1.06 r
+  I2/our_component/dadda/l2_fa_row_33/S (FA_89)           0.00       1.06 r
+  I2/our_component/dadda/l1_fa_row_33/A (FA_31)           0.00       1.06 r
+  I2/our_component/dadda/l1_fa_row_33/U2/ZN (XNOR2_X1)
+                                                          0.04       1.10 f
+  I2/our_component/dadda/l1_fa_row_33/U3/ZN (XNOR2_X1)
+                                                          0.06       1.16 f
+  I2/our_component/dadda/l1_fa_row_33/S (FA_31)           0.00       1.16 f
+  I2/our_component/dadda/add_597/A[33] (DADDA_TREE_DW01_add_7)
+                                                          0.00       1.16 f
+  I2/our_component/dadda/add_597/U896/ZN (NAND2_X1)       0.04       1.20 r
+  I2/our_component/dadda/add_597/U902/ZN (OAI21_X1)       0.03       1.23 f
+  I2/our_component/dadda/add_597/U931/ZN (AOI21_X1)       0.05       1.29 r
+  I2/our_component/dadda/add_597/U951/ZN (OAI21_X1)       0.04       1.32 f
+  I2/our_component/dadda/add_597/U967/ZN (AOI21_X1)       0.04       1.37 r
+  I2/our_component/dadda/add_597/U829/ZN (OAI21_X1)       0.04       1.40 f
+  I2/our_component/dadda/add_597/U623/Z (BUF_X1)          0.04       1.45 f
+  I2/our_component/dadda/add_597/U986/ZN (AOI21_X1)       0.05       1.50 r
+  I2/our_component/dadda/add_597/U841/ZN (XNOR2_X1)       0.06       1.56 r
+  I2/our_component/dadda/add_597/SUM[47] (DADDA_TREE_DW01_add_7)
+                                                          0.00       1.56 r
+  I2/our_component/dadda/PROD[47] (DADDA_TREE)            0.00       1.56 r
+  I2/our_component/PROD[47] (MBE_multiplier)              0.00       1.56 r
+  I2/SIG_in_reg[27]/D (DFF_X2)                            0.01       1.57 r
+  data arrival time                                                  1.57
+
+  clock MY_CLK (rise edge)                                0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  clock uncertainty                                      -0.07      -0.07
+  I2/SIG_in_reg[27]/CK (DFF_X2)                           0.00      -0.07 r
+  library setup time                                     -0.03      -0.10
+  data required time                                                -0.10
+  --------------------------------------------------------------------------
+  data required time                                                -0.10
+  data arrival time                                                 -1.57
+  --------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -1.67
+
+
+1
